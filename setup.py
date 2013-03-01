@@ -12,7 +12,7 @@ def read(fname):
 
 setup(
     name="django-people",
-    version=.app.__version__,
+    version=app.__version__,
     description=read('DESCRIPTION'),
     long_description=read('README.rst'),
     license='The MIT License',
