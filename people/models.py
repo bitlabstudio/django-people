@@ -189,7 +189,9 @@ class PersonTranslation(models.Model):
       depending on the users locale.
     :last_name: The last name of the person. Must be translateable (see
       first_name).
-    :bio: A short description of the person.
+    :short_bio: A short description of the person.
+    :bio: A longer description of the person, could appear after a
+      ``read more`` link behind the ``short_bio``.
 
     """
     first_name = models.CharField(
@@ -200,6 +202,12 @@ class PersonTranslation(models.Model):
     last_name = models.CharField(
         max_length=256,
         verbose_name=_('Last anme'),
+        blank=True,
+    )
+
+    short_bio = models.TextField(
+        max_length=512,
+        verbose_name=_('Short bio'),
         blank=True,
     )
 
