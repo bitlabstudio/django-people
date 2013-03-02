@@ -37,6 +37,12 @@ class LinkType(SimpleTranslationMixin, models.Model):
         null=True, blank=True,
     )
 
+    class Meta:
+        ordering = ['ordering', ]
+
+    def __unicode__(self):
+        return self.get_translation().name
+
 
 class LinkTypeTranslation(models.Model):
     """
@@ -62,7 +68,8 @@ class Role(SimpleTranslationMixin, models.Model):
     :name: The name of the role.
 
     """
-    pass
+    def __unicode__(self):
+        return self.get_translation().name
 
 
 class RoleTranslation(models.Model):
