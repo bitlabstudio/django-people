@@ -5,5 +5,5 @@ include CHANGELOG.txt
 include README.md
 graft people 
 global-exclude *.orig *.pyc *.log
-prune people/tests/coverage/
-prune people/.ropeproject/
+prune people/tests/coverage
+prune people/.ropeproject
