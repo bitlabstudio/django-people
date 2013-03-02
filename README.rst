@@ -39,7 +39,34 @@ Add ``people`` to your ``INSTALLED_APPS``::
 
 Run the South migrations::
 
-    ./manage.py migrate people 
+    ./manage.py migrate people
+
+
+Usage
+-----
+
+Use the Django admin to create your person objects. If you are using django-cms
+you can use the ``Person Plugin`` to display a person in your placeholders.
+
+
+Settings
+--------
+
+PERSON_PLUGIN_DISPLAY_TYPE_CHOICES
+++++++++++++++++++++++++++++++++++
+
+Default::
+
+    [
+        ('small', _('small')),
+        ('big', _('big')),
+    ]
+
+When using the ``Person Plugin`` in your django-cms placeholders you will
+notice that you only have two choices for the ``Display type``. This field
+can be helpful when you want to render a person differently in different parts
+of your site. If you need even more display types, just set this setting to
+a different list of tuples.
 
 
 Roadmap

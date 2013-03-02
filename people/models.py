@@ -2,8 +2,11 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+from cms.models.pluginmodel import CMSPlugin
 from django_libs.models_mixins import SimpleTranslationMixin
 from filer.fields.file import FilerFileField
+
+from . import settings
 
 
 GENDER_CHOICES = [
@@ -172,6 +175,10 @@ class Person(SimpleTranslationMixin, models.Model):
     class Meta:
         ordering = ['ordering', ]
 
+    def __unicode__(self):
+        trans = self.get_translation()
+        return '{0} {1}'.format(trans.first_name, trans.last_name)
+
 
 class PersonTranslation(models.Model):
     """
@@ -205,6 +212,23 @@ class PersonTranslation(models.Model):
     # needed by simple-translation
     person = models.ForeignKey(Person)
     language = models.CharField(max_length=16)
+
+
+class PersonPluginModel(CMSPlugin):
+    """Model for the ``PersonPlugin`` cms plugin."""
+    display_type = models.CharField(
+        max_length=256,
+        choices=settings.DISPLAY_TYPE_CHOICES,
+        verbose_name=_('Display type'),
+    )
+
+    person = models.ForeignKey(
+        Person,
+        verbose_name=_('Person'),
+    )
+
+    def copy_relations(self, oldinstance):
+        self.person = oldinstance.person
 
 
 class Link(models.Model):

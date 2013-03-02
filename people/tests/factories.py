@@ -8,6 +8,7 @@ from ..models import (
     LinkType,
     LinkTypeTranslation,
     Person,
+    PersonPluginModel,
     PersonTranslation,
     Role,
     RoleTranslation,
@@ -30,6 +31,14 @@ class PersonTranslationFactory(factory.Factory):
     first_name = 'First name'
     person = factory.SubFactory(PersonFactory)
     language = 'en'
+
+
+class PersonPluginModelFactory(factory.Factory):
+    """Factory for ``PersonPluginModel`` objects."""
+    FACTORY_FOR = PersonPluginModel
+
+    display_type = 'small'
+    person = factory.SubFactory(PersonFactory)
 
 
 class RoleFactory(SimpleTranslationMixin, factory.Factory):
