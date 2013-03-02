@@ -32,6 +32,16 @@ class LinkType(SimpleTranslationMixin, models.Model):
       special order.
 
     """
+    slug = models.SlugField(
+        max_length=256,
+        verbose_name=_('Slug'),
+        help_text=_(
+            'Use this field to define a simple identifier that can be used'
+            ' to style the different link types (i.e. assign social media'
+            ' icons to them)'),
+        blank=True,
+    )
+
     ordering = models.PositiveIntegerField(
         verbose_name=_('Ordering'),
         null=True, blank=True,
