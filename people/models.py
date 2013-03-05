@@ -257,3 +257,6 @@ class Link(models.Model):
     url = models.URLField(
         verbose_name=_('URL'),
     )
+
+    def __unicode__(self):
+        return self.url

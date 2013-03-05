@@ -9,6 +9,11 @@ from simple_translation.utils import get_preferred_translation_from_lang
 from . import models
 
 
+class LinkAdmin(admin.ModelAdmin):
+    """Admin for the ``Link`` model."""
+    list_display = ['person', 'link_type', 'url', ]
+
+
 class LinkInline(admin.TabularInline):
     """Inline admin for ``Link`` objects."""
     model = models.Link
@@ -52,7 +57,7 @@ class RoleAdmin(TranslationAdmin):
     name.short_description = _('Name')
 
 
-admin.site.register(models.Link)
+admin.site.register(models.Link, LinkAdmin)
 admin.site.register(models.LinkType, LinkTypeAdmin)
 admin.site.register(models.Person, PersonAdmin)
 admin.site.register(models.Role, RoleAdmin)
