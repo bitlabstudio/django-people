@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.3 ===
+
 - Improved Link admin
 
 === 0.2 ===
