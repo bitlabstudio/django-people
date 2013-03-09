@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.4 ===
+
 - Made person_plugin.html more reusable.
 
 === 0.3 ===
