@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Made person_plugin.html more reusable.
+
 === 0.3 ===
 
 - Improved Link admin
