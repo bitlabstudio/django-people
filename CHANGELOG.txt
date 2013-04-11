@@ -1,5 +1,7 @@
 === ongoing ===
 
+- removed "other" from gender choices.
+
 === 0.4 ===
 
 - Made person_plugin.html more reusable.
