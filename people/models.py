@@ -12,7 +12,6 @@ from . import settings
 GENDER_CHOICES = [
     ('male', _('male')),
     ('female', _('female')),
-    ('other', _('other')),
 ]
 
 TITLE_CHOICES = [
