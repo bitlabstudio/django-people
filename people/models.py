@@ -183,22 +183,34 @@ class PersonTranslation(models.Model):
     """
     Translateable fields of the ``Person`` model.
 
-    :first_name: The first name of the person. Must be translateable because
-      for chinese people you might want to show chinese words vs. pinyin words
-      depending on the users locale.
-    :last_name: The last name of the person. Must be translateable (see
-      first_name).
+    :roman_first_name: The first name in roman letters.
+    :roman_last_name: The last name in roman letters.
+    :non_roman_first_name: The first name in non roman letters.
+    :non_roman_last_name: The last name in non roman letters.
     :short_bio: A short description of the person.
     :bio: A longer description of the person, could appear after a
       ``read more`` link behind the ``short_bio``.
 
     """
-    first_name = models.CharField(
+    roman_first_name = models.CharField(
         max_length=256,
         verbose_name=_('First name'),
+        blank=True
     )
 
-    last_name = models.CharField(
+    roman_last_name = models.CharField(
+        max_length=256,
+        verbose_name=_('Last anme'),
+        blank=True,
+    )
+
+    non_roman_first_name = models.CharField(
+        max_length=256,
+        verbose_name=_('First name'),
+        blank=True
+    )
+
+    non_roman_last_name = models.CharField(
         max_length=256,
         verbose_name=_('Last anme'),
         blank=True,
@@ -219,6 +231,30 @@ class PersonTranslation(models.Model):
     # needed by simple-translation
     person = models.ForeignKey(Person)
     language = models.CharField(max_length=16)
+
+    def get_title(self):
+        """Returns either 'Mr.' or 'Mrs.' depending on the gender."""
+        return self.person.title
+
+    def get_romanized_first_name(self):
+        """Returns the first name in roman letters."""
+        return self.roman_first_name
+
+    def get_romanized_last_name(self):
+        """Returns the first name in roman letters."""
+        return self.roman_last_name
+
+    def get_non_romanized_first_name(self):
+        """Returns the non roman version of the first name."""
+        return self.non_roman_first_name
+
+    def get_non_romanized_last_name(self):
+        """Returns the non roman version of the first name."""
+        return self.non_roman_last_name
+
+    def get_nickname(self):
+        """Returns the nickname of a person in roman letters."""
+        return self.person.chosen_name
 
 
 class PersonPluginModel(CMSPlugin):

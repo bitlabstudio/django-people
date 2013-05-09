@@ -28,7 +28,7 @@ class PersonTranslationFactory(factory.Factory):
     """Factory for ``PersonTranslation`` objects."""
     FACTORY_FOR = PersonTranslation
 
-    first_name = 'First name'
+    roman_first_name = 'First name'
     person = factory.SubFactory(PersonFactory)
     language = 'en'
 

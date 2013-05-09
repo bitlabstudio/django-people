@@ -1,5 +1,8 @@
 === ongoing ===
 
+- changed the PersonTranslation last_name and first_name fields to the
+  django-localized-names compatible roman and non_roman versions and added the
+  needed interface methods
 
 === 0.4.1 ===
 
