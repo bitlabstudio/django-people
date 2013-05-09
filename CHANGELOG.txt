@@ -1,5 +1,6 @@
 === ongoing ===
 
+- made unicode method of the Person model aware of the new fields
 
 === 0.5 ===
 

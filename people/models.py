@@ -176,7 +176,12 @@ class Person(SimpleTranslationMixin, models.Model):
 
     def __unicode__(self):
         trans = self.get_translation()
-        return '{0} {1}'.format(trans.first_name, trans.last_name)
+        if trans.language in ['de', 'en']:
+            return '{0} {1}'.format(
+                trans.roman_first_name, trans.roman_last_name)
+        else:
+            return '{0}{1}'.format(
+                trans.non_roman_last_name, trans.non_roman_first)
 
 
 class PersonTranslation(models.Model):
