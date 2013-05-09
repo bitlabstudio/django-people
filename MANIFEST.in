@@ -3,7 +3,7 @@ include LICENSE
 include DESCRIPTION
 include CHANGELOG.txt
 include README.md
-graft people 
-global-exclude *.orig *.pyc *.log
+graft people
+global-exclude *.orig *.pyc *.log *.swp
 prune people/tests/coverage
 prune people/.ropeproject
