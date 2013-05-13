@@ -19,6 +19,8 @@ class PersonFactory(SimpleTranslationMixin, factory.Factory):
     """Factory for ``Person`` objects."""
     FACTORY_FOR = Person
 
+    roman_first_name = 'First name'
+
     @staticmethod
     def _get_translation_factory_and_field():
         return (PersonTranslationFactory, 'person')
@@ -28,7 +30,6 @@ class PersonTranslationFactory(factory.Factory):
     """Factory for ``PersonTranslation`` objects."""
     FACTORY_FOR = PersonTranslation
 
-    roman_first_name = 'First name'
     person = factory.SubFactory(PersonFactory)
     language = 'en'
 

@@ -1,6 +1,8 @@
 === ongoing ===
 
 
+- moved name fields to the right model
+
 === 0.5.1 ===
 
 - made unicode method of the Person model aware of the new fields

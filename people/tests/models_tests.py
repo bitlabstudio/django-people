@@ -69,10 +69,10 @@ class PersonTranslationTestCase(TestCase):
 
     def setUp(self):
         self.obj = PersonTranslationFactory(
-            roman_first_name='roman_first_name',
-            roman_last_name='roman_last_name',
-            non_roman_first_name='roman_first_name',
-            non_roman_last_name='roman_last_name',
+            person__roman_first_name='roman_first_name',
+            person__roman_last_name='roman_last_name',
+            person__non_roman_first_name='roman_first_name',
+            person__non_roman_last_name='roman_last_name',
             person__title='Mr',
             person__chosen_name='nickname',
         )
@@ -86,19 +86,19 @@ class PersonTranslationTestCase(TestCase):
         """Tests for the interface methods for the ``localized_names`` app."""
         self.assertEqual(
             self.obj.get_romanized_first_name(),
-            self.obj.roman_first_name,
+            self.obj.person.roman_first_name,
             msg='Got the wrong roman first name.')
         self.assertEqual(
             self.obj.get_romanized_last_name(),
-            self.obj.roman_last_name,
+            self.obj.person.roman_last_name,
             msg='Got the wrong roman last name.')
         self.assertEqual(
             self.obj.get_non_romanized_first_name(),
-            self.obj.non_roman_first_name,
+            self.obj.person.non_roman_first_name,
             msg='Got the wrong non roman first name.')
         self.assertEqual(
             self.obj.get_non_romanized_last_name(),
-            self.obj.non_roman_last_name,
+            self.obj.person.non_roman_last_name,
             msg='Got the wrong non roman last name.')
         self.assertEqual(
             self.obj.get_title(),

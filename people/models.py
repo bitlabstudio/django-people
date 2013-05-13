@@ -113,6 +113,10 @@ class Person(SimpleTranslationMixin, models.Model):
 
     For translateable fields see ``PersonTitle`` model.
 
+    :roman_first_name: The first name in roman letters.
+    :roman_last_name: The last name in roman letters.
+    :non_roman_first_name: The first name in non roman letters.
+    :non_roman_last_name: The last name in non roman letters.
     :gender: The gender of the person.
     :title: The title of the person.
     :chosen_name: For asian people, this is the chosen western name.
@@ -124,6 +128,30 @@ class Person(SimpleTranslationMixin, models.Model):
       site in a special way.
 
     """
+    roman_first_name = models.CharField(
+        max_length=256,
+        verbose_name=_('First name'),
+        blank=True
+    )
+
+    roman_last_name = models.CharField(
+        max_length=256,
+        verbose_name=_('Last anme'),
+        blank=True,
+    )
+
+    non_roman_first_name = models.CharField(
+        max_length=256,
+        verbose_name=_('First name'),
+        blank=True
+    )
+
+    non_roman_last_name = models.CharField(
+        max_length=256,
+        verbose_name=_('Last anme'),
+        blank=True,
+    )
+
     gender = models.CharField(
         max_length=16,
         choices=GENDER_CHOICES,
@@ -178,49 +206,21 @@ class Person(SimpleTranslationMixin, models.Model):
         trans = self.get_translation()
         if trans.language in ['de', 'en']:
             return '{0} {1}'.format(
-                trans.roman_first_name, trans.roman_last_name)
+                self.roman_first_name, self.roman_last_name)
         else:
             return '{0}{1}'.format(
-                trans.non_roman_last_name, trans.non_roman_first)
+                self.non_roman_last_name, self.non_roman_first)
 
 
 class PersonTranslation(models.Model):
     """
     Translateable fields of the ``Person`` model.
 
-    :roman_first_name: The first name in roman letters.
-    :roman_last_name: The last name in roman letters.
-    :non_roman_first_name: The first name in non roman letters.
-    :non_roman_last_name: The last name in non roman letters.
     :short_bio: A short description of the person.
     :bio: A longer description of the person, could appear after a
       ``read more`` link behind the ``short_bio``.
 
     """
-    roman_first_name = models.CharField(
-        max_length=256,
-        verbose_name=_('First name'),
-        blank=True
-    )
-
-    roman_last_name = models.CharField(
-        max_length=256,
-        verbose_name=_('Last anme'),
-        blank=True,
-    )
-
-    non_roman_first_name = models.CharField(
-        max_length=256,
-        verbose_name=_('First name'),
-        blank=True
-    )
-
-    non_roman_last_name = models.CharField(
-        max_length=256,
-        verbose_name=_('Last anme'),
-        blank=True,
-    )
-
     short_bio = models.TextField(
         max_length=512,
         verbose_name=_('Short bio'),
@@ -243,19 +243,19 @@ class PersonTranslation(models.Model):
 
     def get_romanized_first_name(self):
         """Returns the first name in roman letters."""
-        return self.roman_first_name
+        return self.person.roman_first_name
 
     def get_romanized_last_name(self):
         """Returns the first name in roman letters."""
-        return self.roman_last_name
+        return self.person.roman_last_name
 
     def get_non_romanized_first_name(self):
         """Returns the non roman version of the first name."""
-        return self.non_roman_first_name
+        return self.person.non_roman_first_name
 
     def get_non_romanized_last_name(self):
         """Returns the non roman version of the first name."""
-        return self.non_roman_last_name
+        return self.person.non_roman_last_name
 
     def get_nickname(self):
         """Returns the nickname of a person in roman letters."""
