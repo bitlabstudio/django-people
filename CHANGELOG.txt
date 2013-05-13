@@ -1,6 +1,8 @@
 === ongoing ===
 
 
+=== 0.5.2 ===
+
 - moved name fields to the right model
 
 === 0.5.1 ===
