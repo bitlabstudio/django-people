@@ -1,5 +1,8 @@
 === ongoing ===
 
+
+=== 0.5.3 ===
+
 - fixed admins and verbose names
 - using get_name in unicode method
 
