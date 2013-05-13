@@ -37,14 +37,18 @@ class PersonAdmin(TranslationAdmin):
         'phone', 'email', 'ordering', 'languages', ]
 
     def first_name(self, obj):
-        lang = get_language()
-        return get_preferred_translation_from_lang(obj, lang).first_name
-    first_name.short_description = _('First name')
+        trans = obj.get_translation()
+        if trans.language in ['de', 'en']:
+            return obj.roman_first_name
+        else:
+            return obj.non_roman_first_name
 
     def last_name(self, obj):
-        lang = get_language()
-        return get_preferred_translation_from_lang(obj, lang).last_name
-    last_name.short_description = _('Last name')
+        trans = obj.get_translation()
+        if trans.language in ['de', 'en']:
+            return obj.roman_last_name
+        else:
+            return obj.non_roman_last_name
 
 
 class RoleAdmin(TranslationAdmin):

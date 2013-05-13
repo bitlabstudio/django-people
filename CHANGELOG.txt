@@ -1,5 +1,7 @@
 === ongoing ===
 
+- fixed admins and verbose names
+- using get_name in unicode method
 
 === 0.5.2 ===
 

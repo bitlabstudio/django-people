@@ -5,6 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 from cms.models.pluginmodel import CMSPlugin
 from django_libs.models_mixins import SimpleTranslationMixin
 from filer.fields.file import FilerFileField
+from localized_names.templatetags.localized_names_tags import get_name
 
 from . import settings
 
@@ -136,7 +137,7 @@ class Person(SimpleTranslationMixin, models.Model):
 
     roman_last_name = models.CharField(
         max_length=256,
-        verbose_name=_('Last anme'),
+        verbose_name=_('Last name'),
         blank=True,
     )
 
@@ -148,7 +149,7 @@ class Person(SimpleTranslationMixin, models.Model):
 
     non_roman_last_name = models.CharField(
         max_length=256,
-        verbose_name=_('Last anme'),
+        verbose_name=_('Last name'),
         blank=True,
     )
 
@@ -205,11 +206,13 @@ class Person(SimpleTranslationMixin, models.Model):
     def __unicode__(self):
         trans = self.get_translation()
         if trans.language in ['de', 'en']:
-            return '{0} {1}'.format(
-                self.roman_first_name, self.roman_last_name)
+            return get_name(trans, 'SHORT_NAME_FORMAT')
+#             return '{0} {1}'.format(
+#                 self.roman_first_name, self.roman_last_name)
         else:
-            return '{0}{1}'.format(
-                self.non_roman_last_name, self.non_roman_first)
+            return get_name(trans, 'SHORT_NAME_FORMAT')
+#             return '{0}{1}'.format(
+#                 self.non_roman_last_name, self.non_roman_first)
 
 
 class PersonTranslation(models.Model):
