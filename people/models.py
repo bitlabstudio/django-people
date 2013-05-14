@@ -131,25 +131,25 @@ class Person(SimpleTranslationMixin, models.Model):
     """
     roman_first_name = models.CharField(
         max_length=256,
-        verbose_name=_('First name'),
+        verbose_name=_('Roman first name'),
         blank=True
     )
 
     roman_last_name = models.CharField(
         max_length=256,
-        verbose_name=_('Last name'),
+        verbose_name=_('Roman last name'),
         blank=True,
     )
 
     non_roman_first_name = models.CharField(
         max_length=256,
-        verbose_name=_('First name'),
+        verbose_name=_('Non roman first name'),
         blank=True
     )
 
     non_roman_last_name = models.CharField(
         max_length=256,
-        verbose_name=_('Last name'),
+        verbose_name=_('Non roman last name'),
         blank=True,
     )
 

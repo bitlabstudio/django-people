@@ -33,22 +33,15 @@ class PersonAdmin(TranslationAdmin):
     """Admin for the ``Person`` model."""
     inlines = [LinkInline, ]
     list_display = [
-        'first_name', 'last_name', 'chosen_name', 'gender', 'title', 'role',
+        'roman_first_name', 'roman_last_name', 'non_roman_first_name_link',
+        'non_roman_last_name', 'chosen_name', 'gender', 'title', 'role',
         'phone', 'email', 'ordering', 'languages', ]
 
-    def first_name(self, obj):
-        trans = obj.get_translation()
-        if trans.language in ['de', 'en']:
-            return obj.roman_first_name
-        else:
-            return obj.non_roman_first_name
-
-    def last_name(self, obj):
-        trans = obj.get_translation()
-        if trans.language in ['de', 'en']:
-            return obj.roman_last_name
-        else:
-            return obj.non_roman_last_name
+    def non_roman_first_name_link(self, obj):
+        return u'<a href="{}/">{}</a>'.format(
+            obj.pk, unicode(obj.non_roman_first_name))
+    non_roman_first_name_link.allow_tags = True
+    non_roman_first_name_link.short_description = "Non roman first name"
 
 
 class RoleAdmin(TranslationAdmin):

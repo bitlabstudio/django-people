@@ -1,5 +1,6 @@
 === ongoing ===
 
+- another improvement on admins and verbose names
 
 === 0.5.3 ===
 
