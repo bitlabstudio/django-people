@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Added chinese locale
+- Added get_gender method as needed by new version of django-localized-names
 
 === 0.5.4 ===
 

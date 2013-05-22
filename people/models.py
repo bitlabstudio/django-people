@@ -10,6 +10,11 @@ from localized_names.templatetags.localized_names_tags import get_name
 from . import settings
 
 
+# Hack to have these strings translated
+mr = _('Mr')
+mrs = _('Mrs')
+
+
 GENDER_CHOICES = [
     ('male', _('male')),
     ('female', _('female')),
@@ -240,8 +245,16 @@ class PersonTranslation(models.Model):
     person = models.ForeignKey(Person)
     language = models.CharField(max_length=16)
 
-    def get_title(self):
+    def get_gender(self):
         """Returns either 'Mr.' or 'Mrs.' depending on the gender."""
+        if self.person.gender == 'male':
+            return 'Mr'
+        else:
+            return 'Mrs'
+        return ''
+
+    def get_title(self):
+        """Returns the title of the person."""
         return self.person.title
 
     def get_romanized_first_name(self):
