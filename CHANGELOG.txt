@@ -1,5 +1,8 @@
 === ongoing ===
 
+- Showing person name in cms plugin unicode method. Instead of just the plugin
+  ID.
+
 === 0.5.5 ===
 
 - Added chinese locale

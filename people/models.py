@@ -210,14 +210,7 @@ class Person(SimpleTranslationMixin, models.Model):
 
     def __unicode__(self):
         trans = self.get_translation()
-        if trans.language in ['de', 'en']:
-            return get_name(trans, 'SHORT_NAME_FORMAT')
-#             return '{0} {1}'.format(
-#                 self.roman_first_name, self.roman_last_name)
-        else:
-            return get_name(trans, 'SHORT_NAME_FORMAT')
-#             return '{0}{1}'.format(
-#                 self.non_roman_last_name, self.non_roman_first)
+        return get_name(trans, 'SHORT_NAME_FORMAT')
 
 
 class PersonTranslation(models.Model):
@@ -293,6 +286,9 @@ class PersonPluginModel(CMSPlugin):
 
     def copy_relations(self, oldinstance):
         self.person = oldinstance.person
+
+    def __unicode__(self):
+        return self.person.__unicode__()
 
 
 class Link(models.Model):
