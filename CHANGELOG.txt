@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.6.3 ===
+
 - Updated locale
 
 === 0.6.2 ===
