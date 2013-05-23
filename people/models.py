@@ -12,7 +12,7 @@ from . import settings
 
 # Hack to have these strings translated
 mr = _('Mr')
-mrs = _('Mrs')
+mrs = _('Ms')
 
 
 GENDER_CHOICES = [
