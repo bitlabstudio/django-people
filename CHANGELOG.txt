@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.6 ===
+
 - Showing person name in cms plugin unicode method. Instead of just the plugin
   ID.
 
