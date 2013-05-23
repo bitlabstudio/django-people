@@ -1,5 +1,7 @@
 === ongoing ===
 
+=== 0.6.2 ===
+
 - Replaced Mrs with Ms again - in interface method
 
 === 0.6.1 ===
