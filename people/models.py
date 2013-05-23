@@ -239,11 +239,11 @@ class PersonTranslation(models.Model):
     language = models.CharField(max_length=16)
 
     def get_gender(self):
-        """Returns either 'Mr.' or 'Mrs.' depending on the gender."""
+        """Returns either 'Mr.' or 'Ms.' depending on the gender."""
         if self.person.gender == 'male':
             return 'Mr'
         else:
-            return 'Mrs'
+            return 'Ms'
         return ''
 
     def get_title(self):
