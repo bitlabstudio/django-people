@@ -43,15 +43,15 @@ msgstr ""
 
 #: models.py:24
 msgid "Dr"
-msgstr ""
+msgstr "博士"
 
 #: models.py:25
 msgid "Prof"
-msgstr ""
+msgstr "教授"
 
 #: models.py:26
 msgid "Prof Dr"
-msgstr ""
+msgstr "博士兼教授"
 
 #: models.py:45
 msgid "Slug"
