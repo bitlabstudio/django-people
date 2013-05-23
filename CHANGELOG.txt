@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Updated locale
+
 === 0.6.2 ===
 
 - Replaced Mrs with Ms again - in interface method

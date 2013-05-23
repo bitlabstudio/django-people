@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-05-22 09:01+0800\n"
+"POT-Creation-Date: 2013-05-23 18:15+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -30,7 +30,7 @@ msgid "Mr"
 msgstr "先生"
 
 #: models.py:15
-msgid "Mrs"
+msgid "Ms"
 msgstr "女士"
 
 #: models.py:19
@@ -115,27 +115,27 @@ msgstr ""
 msgid "Email"
 msgstr ""
 
-#: models.py:234
+#: models.py:227
 msgid "Short bio"
 msgstr ""
 
-#: models.py:240
+#: models.py:233
 msgid "Biography"
 msgstr ""
 
-#: models.py:286
+#: models.py:279
 msgid "Display type"
 msgstr ""
 
-#: models.py:291 models.py:305
+#: models.py:284 models.py:301
 msgid "Person"
 msgstr ""
 
-#: models.py:310
+#: models.py:306
 msgid "Link type"
 msgstr ""
 
-#: models.py:314
+#: models.py:310
 msgid "URL"
 msgstr ""
 
