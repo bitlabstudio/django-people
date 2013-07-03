@@ -1,5 +1,6 @@
 === ongoing ===
 
+- fixed setup.py
 
 === 0.7 ===
 

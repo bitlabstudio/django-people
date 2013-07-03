@@ -23,6 +23,16 @@ setup(
     url="https://github.com/bitmazk/django-people",
     packages=find_packages(),
     include_package_data=True,
+    install_requires=[
+        'Django>=1.4.3',
+        'South',
+        'django-libs',
+        'django-cms',
+        'django-filer',
+        'simple-translation',
+        'Pillow',
+        'django-localized-names',
+    ],
     tests_require=[
         'fabric',
         'factory_boy',
