@@ -6,18 +6,6 @@ of a website.
 
 Comes with a django-cms plugin and is multilingual.
 
-Prerequisites
--------------
-
-You will need to have the following packages installed:
-
-* Django
-* django-cms (optional)
-* django-filer
-* simple-translation
-* Pillow
-* South
-
 
 Installation
 ------------
