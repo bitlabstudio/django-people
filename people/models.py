@@ -77,6 +77,34 @@ class LinkTypeTranslation(models.Model):
     language = models.CharField(max_length=16)
 
 
+class Nationality(SimpleTranslationMixin, models.Model):
+    """
+    The nationality of a Person.
+
+    For translateable fields see the ``NationalityTranslation`` model.
+
+    """
+    def __unicode__(self):
+        return self.get_translation().name
+
+
+class NationalityTranslation(models.Model):
+    """
+    The translateable fields of the ``Nationality`` model.
+
+    :name: E.g. 'Chinese' or 'Deutsch'
+
+    """
+    name = models.CharField(
+        max_length=128,
+        verbose_name=_('Name'),
+    )
+
+    # needed by simple-translation
+    nationality = models.ForeignKey(Nationality)
+    language = models.CharField(max_length=16)
+
+
 class Role(SimpleTranslationMixin, models.Model):
     """
     People can have certain roles in an organisation.
@@ -132,6 +160,7 @@ class Person(SimpleTranslationMixin, models.Model):
     :email: Email address of the person.
     :ordering: Enter numbers if you want to order the list of persons on your
       site in a special way.
+    :nationality: The nationality of a person.
 
     """
     roman_first_name = models.CharField(
@@ -203,6 +232,12 @@ class Person(SimpleTranslationMixin, models.Model):
     ordering = models.PositiveIntegerField(
         verbose_name=_('Ordering'),
         null=True, blank=True,
+    )
+
+    nationality = models.ForeignKey(
+        Nationality,
+        verbose_name=_('Nationality'),
+        blank=True, null=True,
     )
 
     class Meta:

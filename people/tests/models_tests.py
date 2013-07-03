@@ -2,6 +2,7 @@
 from django.test import TestCase
 
 from .factories import (
+    NationalityFactory,
     LinkFactory,
     LinkTypeFactory,
     PersonFactory,
@@ -9,6 +10,18 @@ from .factories import (
     PersonTranslationFactory,
     RoleFactory,
 )
+
+
+class NationalityTestCase(TestCase):
+    """Tests for the ``Nationality`` model class."""
+    longMessage = True
+
+    def test_instantiation(self):
+        """Test instantiation of the ``Nationality`` model."""
+        nationality = NationalityFactory()
+        self.assertTrue(nationality.pk)
+        # also test the instantiation of the NationalityTranslation
+        self.assertTrue(nationality.get_translation().pk)
 
 
 class LinkTestCase(TestCase):

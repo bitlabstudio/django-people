@@ -1,5 +1,7 @@
 === ongoing ===
 
+- Added Nationalities
+
 === 0.6.4 ===
 
 - Updated locale

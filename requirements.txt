@@ -4,7 +4,7 @@
 # Packages essential to this app. Needed by anyone who wants to use this app.
 # ===========================================================================
 django==1.4.3
-django-libs==0.17
+django-libs
 django-cms==2.3.5
 django-filer==0.9.3
 simple-translation==0.8.6

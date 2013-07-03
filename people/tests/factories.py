@@ -4,6 +4,8 @@ import factory
 from django_libs.tests.factories import SimpleTranslationMixin
 
 from ..models import (
+    Nationality,
+    NationalityTranslation,
     Link,
     LinkType,
     LinkTypeTranslation,
@@ -13,6 +15,23 @@ from ..models import (
     Role,
     RoleTranslation,
 )
+
+
+class NationalityFactory(SimpleTranslationMixin, factory.Factory):
+    """Factory for the ``Nationality`` model."""
+    FACTORY_FOR = Nationality
+
+    @staticmethod
+    def _get_translation_factory_and_field():
+        return (NationalityTranslationFactory, 'nationality')
+
+
+class NationalityTranslationFactory(factory.Factory):
+    """Factory for the ``NationalityTranslation`` model."""
+    FACTORY_FOR = NationalityTranslation
+
+    name = factory.Sequence(lambda n: 'nationality {}'.format(n))
+    language = 'en'
 
 
 class PersonFactory(SimpleTranslationMixin, factory.Factory):
