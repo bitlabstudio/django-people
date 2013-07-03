@@ -1,5 +1,6 @@
 === ongoing ===
 
+- added admin for Nationality
 
 === 0.7.1 ===
 
