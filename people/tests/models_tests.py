@@ -88,6 +88,7 @@ class PersonTranslationTestCase(TestCase):
             person__non_roman_last_name='roman_last_name',
             person__title='Mr',
             person__chosen_name='nickname',
+            person__gender='male',
         )
 
     def test_model(self):
@@ -121,6 +122,17 @@ class PersonTranslationTestCase(TestCase):
             self.obj.get_nickname(),
             self.obj.person.chosen_name,
             msg='Got the wrong nickname.')
+
+    def test_get_gender(self):
+        self.assertEqual(self.obj.get_gender(), 'Mr')
+
+        self.obj.person.gender = 'female'
+        self.obj.person.save()
+        self.assertEqual(self.obj.get_gender(), 'Ms')
+
+        self.obj.person.gender = ''
+        self.obj.person.save()
+        self.assertEqual(self.obj.get_gender(), '')
 
 
 class RoleTestCase(TestCase):

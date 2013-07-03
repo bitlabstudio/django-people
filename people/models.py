@@ -277,7 +277,7 @@ class PersonTranslation(models.Model):
         """Returns either 'Mr.' or 'Ms.' depending on the gender."""
         if self.person.gender == 'male':
             return 'Mr'
-        else:
+        elif self.person.gender == 'female':
             return 'Ms'
         return ''
 
