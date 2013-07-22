@@ -87,6 +87,9 @@ class Nationality(SimpleTranslationMixin, models.Model):
     def __unicode__(self):
         return self.get_translation().name
 
+    class Meta:
+        verbose_name_plural = _('Nationalities')
+
 
 class NationalityTranslation(models.Model):
     """
@@ -242,6 +245,7 @@ class Person(SimpleTranslationMixin, models.Model):
 
     class Meta:
         ordering = ['ordering', ]
+        verbose_name_plural = _('People')
 
     def __unicode__(self):
         trans = self.get_translation()
