@@ -30,7 +30,7 @@ class NationalityTranslationFactory(factory.Factory):
     """Factory for the ``NationalityTranslation`` model."""
     FACTORY_FOR = NationalityTranslation
 
-    name = factory.Sequence(lambda n: 'nationality {}'.format(n))
+    name = factory.Sequence(lambda n: 'nationality {0}'.format(n))
     language = 'en'
 
 
