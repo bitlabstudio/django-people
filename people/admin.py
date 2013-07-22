@@ -48,7 +48,7 @@ class PersonAdmin(TranslationAdmin):
         'phone', 'email', 'ordering', 'languages', ]
 
     def non_roman_first_name_link(self, obj):
-        return u'<a href="{}/">{}</a>'.format(
+        return u'<a href="{0}/">{1}</a>'.format(
             obj.pk, unicode(obj.non_roman_first_name))
     non_roman_first_name_link.allow_tags = True
     non_roman_first_name_link.short_description = "Non roman first name"
