@@ -1,6 +1,9 @@
 === ongoing ===
 
+=== 0.7.2 ===
+
 - added admin for Nationality
+- added plural verbose names to models
 
 === 0.7.1 ===
 
