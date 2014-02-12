@@ -114,3 +114,6 @@ CMS_FRONTEND_LANGUAGES = ('en', 'de', )
 CMS_TEMPLATES = (
     ('standard.html', 'Standard'),
 )
+
+SHORT_NAME_FORMAT = '{g} {l}'
+LONG_NAME_FORMAT = '{t} {g} {f} {l}'
