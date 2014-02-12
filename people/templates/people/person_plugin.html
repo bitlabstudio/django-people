@@ -1,5 +1,5 @@
-{% load simple_translation_tags %}
+{% load localized_names_tags simple_translation_tags %}
 
 {% with person|get_preferred_translation_from_request:request as trans %}
-{{ trans.first_name }}
+{{ trans|get_name }}
 {% endwith %}

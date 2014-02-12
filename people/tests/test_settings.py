@@ -95,6 +95,7 @@ EXTERNAL_APPS = [
     'mptt',
     'easy_thumbnails',
     'simple_translation',
+    'localized_names',
 ]
 
 INTERNAL_APPS = [
@@ -116,4 +117,4 @@ CMS_TEMPLATES = (
 )
 
 SHORT_NAME_FORMAT = '{g} {l}'
-LONG_NAME_FORMAT = '{t} {g} {f} {l}'
+LONG_NAME_FORMAT = '{g} {f} {l}'
