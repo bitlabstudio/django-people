@@ -66,7 +66,7 @@ class LinkType(TranslatableModel):
         ordering = ['ordering', ]
 
     def __unicode__(self):
-        return self.name
+        return self.safe_translation_getter('name', self.slug)
 
 
 class Nationality(TranslatableModel):
@@ -84,7 +84,8 @@ class Nationality(TranslatableModel):
     )
 
     def __unicode__(self):
-        return self.name
+        return self.safe_translation_getter(
+            'name', 'Nationality No. {0}'.format(self.id))
 
     class Meta:
         verbose_name_plural = _('Nationalities')
@@ -112,7 +113,8 @@ class Role(TranslatableModel):
     )
 
     def __unicode__(self):
-        return self.name
+        return self.safe_translation_getter(
+            'name', 'Role No. {0}'.format(self.id))
 
 
 class Person(TranslatableModel):
@@ -232,8 +234,39 @@ class Person(TranslatableModel):
         verbose_name_plural = _('People')
 
     def __unicode__(self):
-        # TODO make this better
-        return self.roman_first_name + self.non_roman_first_name
+        return get_name(self)
+
+    def get_gender(self):
+        """Returns either 'Mr.' or 'Ms.' depending on the gender."""
+        if self.gender == 'male':
+            return 'Mr'
+        elif self.gender == 'female':
+            return 'Ms'
+        return ''
+
+    def get_title(self):
+        """Returns the title of the person."""
+        return self.title
+
+    def get_romanized_first_name(self):
+        """Returns the first name in roman letters."""
+        return self.roman_first_name
+
+    def get_romanized_last_name(self):
+        """Returns the first name in roman letters."""
+        return self.roman_last_name
+
+    def get_non_romanized_first_name(self):
+        """Returns the non roman version of the first name."""
+        return self.non_roman_first_name
+
+    def get_non_romanized_last_name(self):
+        """Returns the non roman version of the first name."""
+        return self.non_roman_last_name
+
+    def get_nickname(self):
+        """Returns the nickname of a person in roman letters."""
+        return self.chosen_name
 
 
 class PersonPluginModel(CMSPlugin):
@@ -253,7 +286,7 @@ class PersonPluginModel(CMSPlugin):
         self.person = oldinstance.person
 
     def __unicode__(self):
-        return self.person.__unicode__()
+        return self.person
 
 
 class Link(models.Model):
