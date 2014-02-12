@@ -16,6 +16,8 @@ South==0.8.1
 # simple-translation==0.8.6
 -e git+git://github.com/mbrochh/simple-translation.git@91c98e0cb1a4150f0460855dea869ddd75aaf25e#egg=simple_translation
 
+-e git+https://github.com/KristianOellegaard/django-hvad.git@0e2101f15404eaf9611cd6cf843bfc424117b227#egg=hvad
+
 django-localized-names
 
 
