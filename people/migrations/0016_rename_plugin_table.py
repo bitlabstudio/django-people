@@ -9,10 +9,10 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        db.rename_table('cmsplugin_personpluginmodel', 'people_personplugin')
+        db.rename_table('cmsplugin_personpluginmodel', 'people_personpluginmodel')
 
     def backwards(self, orm):
-        db.rename_table('people_personplugin', 'cmsplugin_personpluginmodel')
+        db.rename_table('people_personpluginmodel', 'cmsplugin_personpluginmodel')
 
     models = {
         u'auth.group': {
