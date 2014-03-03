@@ -1,6 +1,7 @@
 """Factories for the models of the ``people`` app."""
-import factory
+from django.conf import settings
 
+import factory
 from django_libs.tests.factories import HvadFactoryMixin
 
 from ..models import (
@@ -25,6 +26,7 @@ class PersonFactory(HvadFactoryMixin, factory.DjangoModelFactory):
     FACTORY_FOR = Person
 
     roman_first_name = 'First name'
+    language_code = settings.LANGUAGE_CODE
 
 
 class PersonPluginModelFactory(factory.DjangoModelFactory):
