@@ -3,13 +3,17 @@
 # ===========================================================================
 # Packages essential to this app. Needed by anyone who wants to use this app.
 # ===========================================================================
-django==1.4.3
+django==1.6.2
+-e git+https://github.com/KristianOellegaard/django-hvad.git@0e2101f15404eaf9611cd6cf843bfc424117b227#egg=hvad
+# django-hvad==0.3
 django-libs
-django-cms==2.3.5
-django-filer==0.9.3
-simple-translation==0.8.6
 Pillow==1.7.8
-South==0.7.6
+South==0.8.4
+django-filer==0.9.5
+
+-e git+https://github.com/divio/django-cms.git@8327844ff84df60e36c9ef1a8f2e63d740519a51#egg=cms
+
+django-localized-names
 
 
 # ==============================================================

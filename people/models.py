@@ -3,8 +3,8 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
-from django_libs.models_mixins import SimpleTranslationMixin
 from filer.fields.file import FilerFileField
+from hvad.models import TranslatedFields, TranslatableModel
 from localized_names.templatetags.localized_names_tags import get_name
 
 from . import settings
@@ -27,7 +27,7 @@ TITLE_CHOICES = [
 ]
 
 
-class LinkType(SimpleTranslationMixin, models.Model):
+class LinkType(TranslatableModel):
     """
     A link type could be ``Facebook`` or ``Twitter`` or ``Website``.
 
@@ -55,60 +55,43 @@ class LinkType(SimpleTranslationMixin, models.Model):
         null=True, blank=True,
     )
 
+    translations = TranslatedFields(
+        name=models.CharField(
+            max_length=256,
+            verbose_name=_('Name'),
+        )
+    )
+
     class Meta:
         ordering = ['ordering', ]
 
     def __unicode__(self):
-        return self.get_translation().name
+        return self.safe_translation_getter('name', self.slug)
 
 
-class LinkTypeTranslation(models.Model):
-    """
-    Translateable fields of the ``LinkType`` model.
-
-    """
-    name = models.CharField(
-        max_length=256,
-        verbose_name=_('Name'),
-    )
-
-    # needed by simple-translation
-    link_type = models.ForeignKey(LinkType)
-    language = models.CharField(max_length=16)
-
-
-class Nationality(SimpleTranslationMixin, models.Model):
+class Nationality(TranslatableModel):
     """
     The nationality of a Person.
 
     For translateable fields see the ``NationalityTranslation`` model.
 
     """
+    translations = TranslatedFields(
+        name=models.CharField(
+            max_length=128,
+            verbose_name=_('Name'),
+        )
+    )
+
     def __unicode__(self):
-        return self.get_translation().name
+        return self.safe_translation_getter(
+            'name', 'Nationality No. {0}'.format(self.id))
 
     class Meta:
         verbose_name_plural = _('Nationalities')
 
 
-class NationalityTranslation(models.Model):
-    """
-    The translateable fields of the ``Nationality`` model.
-
-    :name: E.g. 'Chinese' or 'Deutsch'
-
-    """
-    name = models.CharField(
-        max_length=128,
-        verbose_name=_('Name'),
-    )
-
-    # needed by simple-translation
-    nationality = models.ForeignKey(Nationality)
-    language = models.CharField(max_length=16)
-
-
-class Role(SimpleTranslationMixin, models.Model):
+class Role(TranslatableModel):
     """
     People can have certain roles in an organisation.
 
@@ -117,34 +100,24 @@ class Role(SimpleTranslationMixin, models.Model):
     :name: The name of the role.
 
     """
+    translations = TranslatedFields(
+        name=models.CharField(
+            max_length=256,
+            verbose_name=_('Role'),
+        ),
+        role_description=models.TextField(
+            max_length=4000,
+            verbose_name=_('Role description'),
+            blank=True,
+        ),
+    )
+
     def __unicode__(self):
-        return self.get_translation().name
+        return self.safe_translation_getter(
+            'name', 'Role No. {0}'.format(self.id))
 
 
-class RoleTranslation(models.Model):
-    """
-    Translateable fields of the ``Role`` model.
-
-    :name: The name of the role.
-
-    """
-    name = models.CharField(
-        max_length=256,
-        verbose_name=_('Role'),
-    )
-
-    role_description = models.TextField(
-        max_length=4000,
-        verbose_name=_('Role description'),
-        blank=True,
-    )
-
-    # needed by simple-translation
-    role = models.ForeignKey(Role)
-    language = models.CharField(max_length=16)
-
-
-class Person(SimpleTranslationMixin, models.Model):
+class Person(TranslatableModel):
     """
     A model that holds information about a person.
 
@@ -243,71 +216,57 @@ class Person(SimpleTranslationMixin, models.Model):
         blank=True, null=True,
     )
 
+    translations = TranslatedFields(
+        short_bio=models.TextField(
+            max_length=512,
+            verbose_name=_('Short bio'),
+            blank=True,
+        ),
+        bio=models.TextField(
+            max_length=4000,
+            verbose_name=_('Biography'),
+            blank=True,
+        ),
+    )
+
     class Meta:
         ordering = ['ordering', ]
         verbose_name_plural = _('People')
 
     def __unicode__(self):
-        trans = self.get_translation()
-        return get_name(trans, 'SHORT_NAME_FORMAT')
-
-
-class PersonTranslation(models.Model):
-    """
-    Translateable fields of the ``Person`` model.
-
-    :short_bio: A short description of the person.
-    :bio: A longer description of the person, could appear after a
-      ``read more`` link behind the ``short_bio``.
-
-    """
-    short_bio = models.TextField(
-        max_length=512,
-        verbose_name=_('Short bio'),
-        blank=True,
-    )
-
-    bio = models.TextField(
-        max_length=4000,
-        verbose_name=_('Biography'),
-        blank=True,
-    )
-
-    # needed by simple-translation
-    person = models.ForeignKey(Person)
-    language = models.CharField(max_length=16)
+        return get_name(self)
 
     def get_gender(self):
         """Returns either 'Mr.' or 'Ms.' depending on the gender."""
-        if self.person.gender == 'male':
+        if self.gender == 'male':
             return 'Mr'
-        elif self.person.gender == 'female':
+        elif self.gender == 'female':
             return 'Ms'
         return ''
 
     def get_title(self):
         """Returns the title of the person."""
-        return self.person.title
+        return self.title
 
     def get_romanized_first_name(self):
         """Returns the first name in roman letters."""
-        return self.person.roman_first_name
+        return self.roman_first_name
 
     def get_romanized_last_name(self):
         """Returns the first name in roman letters."""
-        return self.person.roman_last_name
+        return self.roman_last_name
 
     def get_non_romanized_first_name(self):
         """Returns the non roman version of the first name."""
-        return self.person.non_roman_first_name
+        return self.non_roman_first_name
 
     def get_non_romanized_last_name(self):
         """Returns the non roman version of the first name."""
-        return self.person.non_roman_last_name
+        return self.non_roman_last_name
 
     def get_nickname(self):
         """Returns the nickname of a person in roman letters."""
-        return self.person.chosen_name
+        return self.chosen_name
 
 
 class PersonPluginModel(CMSPlugin):
@@ -327,7 +286,7 @@ class PersonPluginModel(CMSPlugin):
         self.person = oldinstance.person
 
     def __unicode__(self):
-        return self.person.__unicode__()
+        return self.person
 
 
 class Link(models.Model):

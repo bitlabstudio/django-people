@@ -1,5 +1,6 @@
 {% load simple_translation_tags %}
 
-{% with person|get_preferred_translation_from_request:request as trans %}
-{{ trans.first_name }}
+{% comment %}previously we used the get_name filter for the person. Now the unicode method of the person defaults to that output.{% endcomment %}
+{{ person }}
+
 {% endwith %}
