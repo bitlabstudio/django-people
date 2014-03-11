@@ -11,7 +11,6 @@ def read(fname):
 
 
 dependency_links = [
-    'https://github.com/divio/django-cms/tarball/3a09d5c39b3469e64aeecc0205a193f5b70c2061',  # NOQA
     # needs this dev version for django 1.6 fixes
     'https://github.com/KristianOellegaard/django-hvad/tarball/0e2101f15404eaf9611cd6cf843bfc424117b227',  # NOQA
 ]

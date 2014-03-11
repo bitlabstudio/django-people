@@ -1,5 +1,10 @@
 === ongoing ===
 
+
+=== 1.0 ===
+
+- migrated to django-hvad
+
 === 0.7.3 ===
 
 - Changed {} string formatters to {0} for Python 2.6 backwards compatibility
