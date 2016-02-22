@@ -1,14 +1,7 @@
 """Tests for the models of the ``people`` app."""
 from django.test import TestCase
 
-from .factories import (
-    NationalityFactory,
-    LinkFactory,
-    LinkTypeFactory,
-    PersonFactory,
-    PersonPluginModelFactory,
-    RoleFactory,
-)
+from mixer.backend.django import mixer
 
 
 class NationalityTestCase(TestCase):
@@ -17,7 +10,7 @@ class NationalityTestCase(TestCase):
 
     def test_instantiation(self):
         """Test instantiation of the ``Nationality`` model."""
-        nationality = NationalityFactory()
+        nationality = mixer.blend('people.NationalityTranslation')
         self.assertTrue(nationality.pk)
 
 
@@ -26,7 +19,7 @@ class LinkTestCase(TestCase):
     longMessage = True
 
     def test_model(self):
-        obj = LinkFactory(person__language_code='en')
+        obj = mixer.blend('people.Link')
         self.assertTrue(obj.pk, msg=(
             'Should be able to instantiate and save the model.'))
 
@@ -36,7 +29,7 @@ class LinkTypeTestCase(TestCase):
     longMessage = True
 
     def test_model(self):
-        obj = LinkTypeFactory()
+        obj = mixer.blend('people.LinkTypeTranslation')
         self.assertTrue(obj.pk, msg=(
             'Should be able to instantiate and save the model.'))
 
@@ -46,7 +39,8 @@ class PersonTestCase(TestCase):
     longMessage = True
 
     def setUp(self):
-        self.obj = PersonFactory(
+        self.obj = mixer.blend(
+            'people.PersonTranslation',
             roman_first_name='roman_first_name',
             roman_last_name='roman_last_name',
             non_roman_first_name='roman_first_name',
@@ -55,7 +49,7 @@ class PersonTestCase(TestCase):
             chosen_name='nickname',
             gender='male',
             language_code='en',
-        )
+        ).master
 
     def test_model(self):
         self.assertTrue(self.obj.pk, msg=(
@@ -105,13 +99,13 @@ class PersonPluginModelTestCase(TestCase):
     longMessage = True
 
     def test_model(self):
-        obj = PersonPluginModelFactory(person__language_code='en')
+        obj = mixer.blend('people.PersonPluginModel')
         self.assertTrue(obj.pk, msg=(
             'Should be able to instantiate and save the model.'))
 
     def test_copy_relations(self):
-        old_obj = PersonPluginModelFactory(person__language_code='en')
-        new_obj = PersonPluginModelFactory(person__language_code='en')
+        old_obj = mixer.blend('people.PersonPluginModel')
+        new_obj = mixer.blend('people.PersonPluginModel')
         new_obj.copy_relations(old_obj)
         self.assertEqual(new_obj.person, old_obj.person, msg=(
             'Should copy the person instance from the old object to the new'
@@ -123,6 +117,6 @@ class RoleTestCase(TestCase):
     longMessage = True
 
     def test_model(self):
-        obj = RoleFactory()
+        obj = mixer.blend('people.RoleTranslation')
         self.assertTrue(obj.pk, msg=(
             'Should be able to instantiate and save the model.'))

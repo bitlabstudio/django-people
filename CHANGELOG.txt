@@ -1,5 +1,6 @@
 === ongoing ===
 
+- prepared app for Django 1.8
 
 === 1.0 ===
 

@@ -31,7 +31,6 @@ setup(
     include_package_data=True,
     install_requires=[
         'Django',
-        'South',
         'django-libs',
         'django-filer',
         'Pillow',
@@ -40,7 +39,7 @@ setup(
     dependency_links=dependency_links,
     tests_require=[
         'fabric',
-        'factory_boy',
+        'mixer',
         'django-nose',
         'coverage',
         'django-coverage',
