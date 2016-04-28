@@ -1,5 +1,6 @@
 """Models for the ``people`` app."""
 from django.db import models
+from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
@@ -27,6 +28,7 @@ TITLE_CHOICES = [
 ]
 
 
+@python_2_unicode_compatible
 class LinkType(TranslatableModel):
     """
     A link type could be ``Facebook`` or ``Twitter`` or ``Website``.
@@ -65,10 +67,11 @@ class LinkType(TranslatableModel):
     class Meta:
         ordering = ['ordering', ]
 
-    def __unicode__(self):
+    def __str__(self):
         return self.safe_translation_getter('name', self.slug)
 
 
+@python_2_unicode_compatible
 class Nationality(TranslatableModel):
     """
     The nationality of a Person.
@@ -83,7 +86,7 @@ class Nationality(TranslatableModel):
         )
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.safe_translation_getter(
             'name', 'Nationality No. {0}'.format(self.id))
 
@@ -91,6 +94,7 @@ class Nationality(TranslatableModel):
         verbose_name_plural = _('Nationalities')
 
 
+@python_2_unicode_compatible
 class Role(TranslatableModel):
     """
     People can have certain roles in an organisation.
@@ -112,11 +116,12 @@ class Role(TranslatableModel):
         ),
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.safe_translation_getter(
             'name', 'Role No. {0}'.format(self.id))
 
 
+@python_2_unicode_compatible
 class Person(TranslatableModel):
     """
     A model that holds information about a person.
@@ -233,7 +238,7 @@ class Person(TranslatableModel):
         ordering = ['ordering', ]
         verbose_name_plural = _('People')
 
-    def __unicode__(self):
+    def __str__(self):
         return get_name(self)
 
     def get_gender(self):
@@ -285,10 +290,8 @@ class PersonPluginModel(CMSPlugin):
     def copy_relations(self, oldinstance):
         self.person = oldinstance.person
 
-    def __unicode__(self):
-        return self.person
 
-
+@python_2_unicode_compatible
 class Link(models.Model):
     """
     A person can have many links.
@@ -308,5 +311,5 @@ class Link(models.Model):
         verbose_name=_('URL'),
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.url

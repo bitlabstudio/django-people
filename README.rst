@@ -22,10 +22,15 @@ Add ``people`` to your ``INSTALLED_APPS``::
 
     INSTALLED_APPS = (
         ...,
+        'cms',
+        'menus',
+        'treebeard',
+        'filer',
+        'easy_thumbnails',
         'people',
     )
 
-Run the South migrations::
+Run the migrations::
 
     ./manage.py migrate people
 

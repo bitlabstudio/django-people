@@ -11,7 +11,7 @@ class NationalityTestCase(TestCase):
     def test_instantiation(self):
         """Test instantiation of the ``Nationality`` model."""
         nationality = mixer.blend('people.NationalityTranslation')
-        self.assertTrue(nationality.pk)
+        self.assertTrue(str(nationality))
 
 
 class LinkTestCase(TestCase):
@@ -20,7 +20,7 @@ class LinkTestCase(TestCase):
 
     def test_model(self):
         obj = mixer.blend('people.Link')
-        self.assertTrue(obj.pk, msg=(
+        self.assertTrue(str(obj), msg=(
             'Should be able to instantiate and save the model.'))
 
 
@@ -30,7 +30,7 @@ class LinkTypeTestCase(TestCase):
 
     def test_model(self):
         obj = mixer.blend('people.LinkTypeTranslation')
-        self.assertTrue(obj.pk, msg=(
+        self.assertTrue(str(obj), msg=(
             'Should be able to instantiate and save the model.'))
 
 
@@ -40,7 +40,7 @@ class PersonTestCase(TestCase):
 
     def setUp(self):
         self.obj = mixer.blend(
-            'people.PersonTranslation',
+            'people.Person',
             roman_first_name='roman_first_name',
             roman_last_name='roman_last_name',
             non_roman_first_name='roman_first_name',
@@ -48,11 +48,11 @@ class PersonTestCase(TestCase):
             title='Mr',
             chosen_name='nickname',
             gender='male',
-            language_code='en',
-        ).master
+        )
+        self.obj.translate('en')
 
     def test_model(self):
-        self.assertTrue(self.obj.pk, msg=(
+        self.assertTrue(str(self.obj), msg=(
             'Should be able to instantiate and save the model.'))
 
     def test_localized_names_methods(self):
@@ -100,7 +100,7 @@ class PersonPluginModelTestCase(TestCase):
 
     def test_model(self):
         obj = mixer.blend('people.PersonPluginModel')
-        self.assertTrue(obj.pk, msg=(
+        self.assertTrue(str(obj), msg=(
             'Should be able to instantiate and save the model.'))
 
     def test_copy_relations(self):
@@ -118,5 +118,5 @@ class RoleTestCase(TestCase):
 
     def test_model(self):
         obj = mixer.blend('people.RoleTranslation')
-        self.assertTrue(obj.pk, msg=(
+        self.assertTrue(str(obj), msg=(
             'Should be able to instantiate and save the model.'))
