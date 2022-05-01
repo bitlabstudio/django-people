@@ -49,7 +49,6 @@ class PersonTestCase(TestCase):
             chosen_name='nickname',
             gender='male',
         )
-        self.obj.translate('en')
 
     def test_model(self):
         self.assertTrue(str(self.obj), msg=(

@@ -29,7 +29,7 @@ setup(
         'django-filer',
         'django-cms',
         'Pillow',
-        'django-hvad',
+        'django-parler',
         'django-localized-names',
     ],
 )

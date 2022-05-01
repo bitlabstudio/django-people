@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
 from filer.fields.file import FilerFileField
-from hvad.models import TranslatedFields, TranslatableModel
+from parler.models import TranslatedFields, TranslatableModel
 from localized_names.templatetags.localized_names_tags import get_name
 
 from . import settings
