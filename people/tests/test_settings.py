@@ -34,7 +34,7 @@ STATICFILES_DIRS = (
     os.path.join(os.path.dirname(__file__), 'test_static'),
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -55,6 +55,7 @@ TEMPLATES = [{
     'OPTIONS': {
         'context_processors': (
             'django.contrib.auth.context_processors.auth',
+            'django.contrib.messages.context_processors.messages',
             'django.template.context_processors.i18n',
             'django.template.context_processors.request',
             'django.template.context_processors.media',

@@ -4,7 +4,7 @@ As you know, every app must be hooked into yout main ``urls.py`` so that
 you can actually reach the app's views (provided it has any views, of course).
 
 """
-from django.conf.urls import include, url
+from django.urls import path, include
 from django.contrib import admin
 
 
@@ -12,6 +12,6 @@ admin.autodiscover()
 
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^', include('cms.urls')),
+    path('admin/', admin.site.urls),
+    path('', include('cms.urls')),
 ]

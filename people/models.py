@@ -1,6 +1,5 @@
 """Models for the ``people`` app."""
 from django.db import models
-from django.utils.encoding import python_2_unicode_compatible
 from django.utils.translation import ugettext_lazy as _
 
 from cms.models.pluginmodel import CMSPlugin
@@ -28,7 +27,6 @@ TITLE_CHOICES = [
 ]
 
 
-@python_2_unicode_compatible
 class LinkType(TranslatableModel):
     """
     A link type could be ``Facebook`` or ``Twitter`` or ``Website``.
@@ -71,7 +69,6 @@ class LinkType(TranslatableModel):
         return self.safe_translation_getter('name', self.slug)
 
 
-@python_2_unicode_compatible
 class Nationality(TranslatableModel):
     """
     The nationality of a Person.
@@ -94,7 +91,6 @@ class Nationality(TranslatableModel):
         verbose_name_plural = _('Nationalities')
 
 
-@python_2_unicode_compatible
 class Role(TranslatableModel):
     """
     People can have certain roles in an organisation.
@@ -121,7 +117,6 @@ class Role(TranslatableModel):
             'name', 'Role No. {0}'.format(self.id))
 
 
-@python_2_unicode_compatible
 class Person(TranslatableModel):
     """
     A model that holds information about a person.
@@ -192,11 +187,13 @@ class Person(TranslatableModel):
         Role,
         verbose_name=_('Role'),
         null=True, blank=True,
+        on_delete=models.SET_NULL,
     )
 
     picture = FilerFileField(
         verbose_name=_('Picture'),
         null=True, blank=True,
+        on_delete=models.SET_NULL,
     )
 
     phone = models.CharField(
@@ -219,6 +216,7 @@ class Person(TranslatableModel):
         Nationality,
         verbose_name=_('Nationality'),
         blank=True, null=True,
+        on_delete=models.SET_NULL,
     )
 
     translations = TranslatedFields(
@@ -285,13 +283,13 @@ class PersonPluginModel(CMSPlugin):
     person = models.ForeignKey(
         Person,
         verbose_name=_('Person'),
+        on_delete=models.CASCADE,
     )
 
     def copy_relations(self, oldinstance):
         self.person = oldinstance.person
 
 
-@python_2_unicode_compatible
 class Link(models.Model):
     """
     A person can have many links.
@@ -300,11 +298,13 @@ class Link(models.Model):
     person = models.ForeignKey(
         Person,
         verbose_name=_('Person'),
+        on_delete=models.CASCADE,
     )
 
     link_type = models.ForeignKey(
         LinkType,
         verbose_name=_('Link type'),
+        on_delete=models.CASCADE,
     )
 
     url = models.URLField(

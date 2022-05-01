@@ -1,8 +1,8 @@
 # ===========================================================================
 # Packages essential to this app. Needed by anyone who wants to use this app.
 # ===========================================================================
-django
-django-hvad
+Django==2.2.28
+django-hvad==1.8.0
 django-libs
 Pillow
 django-filer
