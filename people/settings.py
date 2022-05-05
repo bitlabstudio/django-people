@@ -8,5 +8,4 @@ display_type_choices = [
     ('big', _('big')),
 ]
 
-DISPLAY_TYPE_CHOICES = getattr(
-    settings, 'PERSON_PLUGIN_DISPLAY_TYPE_CHOICES', display_type_choices)
+DISPLAY_TYPE_CHOICES = getattr(settings, 'PERSON_PLUGIN_DISPLAY_TYPE_CHOICES', display_type_choices)

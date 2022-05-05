@@ -11,8 +11,8 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('cms', '0022_auto_20180620_1551'),
-        ('filer', '0015_alter_file_owner_alter_file_polymorphic_ctype_and_more'),
+        ('cms', '0001_initial'),
+        ('filer', '0001_initial'),
     ]
 
     operations = [
